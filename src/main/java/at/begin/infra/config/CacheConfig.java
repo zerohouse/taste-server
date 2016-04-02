@@ -1,4 +1,4 @@
-package at.begin.config;
+package at.begin.infra.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.CacheManager;

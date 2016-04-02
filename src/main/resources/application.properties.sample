@@ -1,14 +1,10 @@
 #==========================================#
 # [DB]
 #==========================================#
-spring.datasource.driverClassName=org.h2.Driver
-spring.datasource.url=jdbc:h2:tcp://localhost/~/noondo
-spring.datasource.username=sa
-spring.datasource.password=
-#spring.datasource.driverClassName=com.mysql.jdbc.Driver
-#spring.datasource.url=jdbc:mysql://localhost:3306/noondo
-#spring.datasource.username=noondo
-#spring.datasource.password=1234
+spring.datasource.driverClassName=com.mysql.jdbc.Driver
+spring.datasource.url=jdbc:mysql://localhost:3306/noondo
+spring.datasource.username=noondo
+spring.datasource.password=1234
 
 #==========================================#
 # [jpa]

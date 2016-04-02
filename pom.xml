@@ -4,12 +4,12 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>at.begin</groupId>
-    <artifactId>taste server</artifactId>
+    <artifactId>tasteserver</artifactId>
     <version>0.0.1</version>
     <packaging>jar</packaging>
 
-    <name>Taste-Api-Server</name>
-    <description>취향 서버</description>
+    <name>TasteApiServer</name>
+    <description>취향서버</description>
 
     <parent>
         <groupId>org.springframework.boot</groupId>

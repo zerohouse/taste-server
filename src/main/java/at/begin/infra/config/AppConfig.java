@@ -1,4 +1,4 @@
-package at.begin.config;
+package at.begin.infra.config;
 
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Import;
