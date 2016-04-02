@@ -1,0 +1,42 @@
+#==========================================#
+# [DB]
+#==========================================#
+spring.datasource.driverClassName=org.h2.Driver
+spring.datasource.url=jdbc:h2:tcp://localhost/~/noondo
+spring.datasource.username=sa
+spring.datasource.password=
+#spring.datasource.driverClassName=com.mysql.jdbc.Driver
+#spring.datasource.url=jdbc:mysql://localhost:3306/noondo
+#spring.datasource.username=noondo
+#spring.datasource.password=1234
+
+#==========================================#
+# [jpa]
+#==========================================#
+spring.jpa.generate-ddl=false
+spring.jpa.show-sql=true
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.hibernate.naming-strategy=org.hibernate.cfg.ImprovedNamingStrategy
+
+#spring.jpa.database-platform=org.hibernate.dialect.MySQLDialect
+spring.jpa.database-platform=org.hibernate.dialect.H2Dialect
+
+#==========================================#
+# [jpa-hibernate Cache]
+#==========================================#
+#spring.jpa.properties.hibernate.cache.use_query_cache=true
+#spring.jpa.properties.hibernate.cache.use_second_level_cache=true
+#spring.jpa.properties.hibernate.cache.region.factory_class=org.hibernate.cache.ehcache.EhCacheRegionFactory
+
+#==========================================#
+#  HTTP encoding (HttpEncodingProperties)
+#==========================================#
+spring.http.encoding.charset=UTF-8
+spring.http.encoding.enabled=true
+spring.http.encoding.force=true
+
+#==========================================#
+#  Try Auto Reconnect
+#==========================================#
+spring.datasource.test-on-borrow=true
+spring.datasource.validation-query=SELECT 1

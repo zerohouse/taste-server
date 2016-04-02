@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<configuration>
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%-5level %d{HH:mm:ss} [%thread] %logger{36} [ %method\(\) - Line %line ] - [ Message ▶ %msg ]%n
+            </pattern>
+        </encoder>
+    </appender>
+
+    <appender name="FILE_OUT" class="ch.qos.logback.core.FileAppender">
+        <file>./logs/com.noondo.log</file>
+        <append>true</append>
+        <encoder>
+            <pattern>%d{HH:mm:ss} %-5level [%thread] ▶ %msg %n</pattern>
+        </encoder>
+    </appender>
+
+    <logger name="com.noondo" level="DEBUG">
+        <appender-ref ref="STDOUT"/>
+        <appender-ref ref="FILE_OUT"/>
+    </logger>
+
+    <logger name="org.springframework" level="WARN">
+        <appender-ref ref="STDOUT"/>
+        <appender-ref ref="FILE_OUT"/>
+    </logger>
+
+</configuration>
