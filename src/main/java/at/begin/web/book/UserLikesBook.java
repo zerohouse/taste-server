@@ -1,4 +1,4 @@
-package at.begin.web.movie;
+package at.begin.web.book;
 
 
 import at.begin.infra.exception.handler.UniqueKeys;
@@ -16,9 +16,9 @@ import javax.persistence.*;
 @Setter
 @NoArgsConstructor
 @EqualsAndHashCode(of = "id")
-@Table(uniqueConstraints = @UniqueConstraint(name = UniqueKeys.MOVIE_ALREADY_EXIST, columnNames = {"user", "movie"}))
+@Table(uniqueConstraints = @UniqueConstraint(name = UniqueKeys.BOOK_ALREADY_EXIST, columnNames = {"user", "book"}))
 @org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-public class UserLikesMovie {
+public class UserLikesBook {
 
     @ManyToOne
     @JoinColumn
@@ -26,7 +26,7 @@ public class UserLikesMovie {
 
     @ManyToOne
     @JoinColumn
-    Movie movie;
+    Book book;
 
     @Id
     @Column
@@ -36,8 +36,8 @@ public class UserLikesMovie {
     @Lob
     String comment;
 
-    public UserLikesMovie(User user, Movie movie) {
+    public UserLikesBook(User user, Book book) {
         this.user = user;
-        this.movie = movie;
+        this.book = book;
     }
 }

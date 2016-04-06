@@ -1,6 +1,7 @@
 package at.begin.web.user;
 
-import at.begin.web.exception.handler.UniqueKeys;
+import at.begin.infra.exception.handler.UniqueKeys;
+import at.begin.web.book.UserLikesBook;
 import at.begin.web.movie.UserLikesMovie;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -26,6 +27,9 @@ public class User {
 
     private static final Logger logger = LoggerFactory.getLogger(User.class);
 
+
+    @OneToMany(mappedBy = "user")
+    List<UserLikesBook> userLikesBooks = new ArrayList<>();
 
     @OneToMany(mappedBy = "user")
     List<UserLikesMovie> userLikesMovies = new ArrayList<>();

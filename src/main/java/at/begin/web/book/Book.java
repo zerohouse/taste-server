@@ -1,4 +1,4 @@
-package at.begin.web.movie;
+package at.begin.web.book;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -19,10 +19,10 @@ import java.util.List;
 @EqualsAndHashCode(of = "id")
 @Entity
 @org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-public class Movie {
+public class Book {
 
-    @OneToMany(mappedBy = "movie")
-    private List<UserLikesMovie> userLikesMovies = new ArrayList<>();
+    @OneToMany(mappedBy = "book")
+    private List<UserLikesBook> userLikesMovies = new ArrayList<>();
 
     @Id
     @Column
@@ -38,26 +38,26 @@ public class Movie {
     String image;
 
     @Column
-    String subtitle;
+    String description;
 
     @Column
     String pubDate;
 
     @Column
-    String directors;
+    String authors;
 
     @Column
-    String actors;
+    String publisher;
 
-    public Movie(MovieDto movieDto) {
-        id = movieDto.id;
-        link = movieDto.link;
-        title = movieDto.title;
-        image = movieDto.image;
-        subtitle = movieDto.subtitle;
-        pubDate = movieDto.pubDate;
-        directors = joinString(movieDto.directors);
-        actors = joinString(movieDto.actors);
+    public Book(BookDto bookDto) {
+        id = bookDto.id;
+        link = bookDto.link;
+        title = bookDto.title;
+        image = bookDto.image;
+        description = bookDto.description;
+        pubDate = bookDto.pubDate;
+        publisher = bookDto.publisher;
+        authors = joinString(bookDto.authors);
     }
 
     private String joinString(List<String> strings) {

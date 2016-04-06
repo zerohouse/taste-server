@@ -1,6 +1,6 @@
 package at.begin.web.user.inject;
 
-import at.begin.web.exception.LoginNeededException;
+import at.begin.infra.exception.LoginNeededException;
 import at.begin.web.user.User;
 import at.begin.web.user.UserRepository;
 import org.springframework.core.MethodParameter;

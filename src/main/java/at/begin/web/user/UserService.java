@@ -1,7 +1,6 @@
 package at.begin.web.user;
 
 import at.begin.infra.response.JsonResponse;
-import at.begin.infra.response.JsonResponseFactory;
 import at.begin.web.user.inject.LoggedUserInjector;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -10,7 +9,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.servlet.http.HttpSession;
 
-import static at.begin.infra.response.JsonResponseFactory.errorResponse;
 import static at.begin.infra.response.JsonResponseFactory.successResponse;
 import static at.begin.infra.response.JsonResponseFactory.warningResponse;
 

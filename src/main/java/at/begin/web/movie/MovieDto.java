@@ -8,11 +8,14 @@ import org.w3c.dom.Element;
 import java.util.Arrays;
 import java.util.List;
 
+import static at.begin.infra.util.Util.getListProperty;
+import static at.begin.infra.util.Util.getProperty;
+
 @Getter
 @NoArgsConstructor
 @ToString
 public class MovieDto {
-    Long id;
+    String id;
     String title;
     String link;
     String image;
@@ -24,10 +27,11 @@ public class MovieDto {
     List<String> actors;
 
     public MovieDto(Element item) {
-        title = getProperty(item, "title");
+        title = getProperty(item, "title").replaceAll("(<([^>]+)>)|(<[^<]+)$", "");
+        subtitle = getProperty(item, "subtitle").replaceAll("(<([^>]+)>)|(<[^<]+)$", "");
         link = getProperty(item, "link");
         image = getProperty(item, "image");
-        subtitle = getProperty(item, "subtitle");
+        id = title + ":" + subtitle;
         pubDate = getProperty(item, "pubDate");
         // userRating = getProperty(item, "userRating");
         directors = getListProperty(item, "director");
@@ -35,7 +39,7 @@ public class MovieDto {
     }
 
     public MovieDto(UserLikesMovie userLikesMovie) {
-        id = userLikesMovie.id;
+        id = userLikesMovie.movie.id;
         title = userLikesMovie.movie.title;
         link = userLikesMovie.movie.link;
         image = userLikesMovie.movie.image;
@@ -46,15 +50,4 @@ public class MovieDto {
         actors = Arrays.asList(userLikesMovie.movie.actors.split("\\|"));
     }
 
-    private static List<String> getListProperty(Element item, String name) {
-        String source = getProperty(item, name);
-        if (source == null) return null;
-        return Arrays.asList(source.split("\\|"));
-    }
-
-    private static String getProperty(Element item, String name) {
-        if (item.getElementsByTagName(name).getLength() == 0)
-            return null;
-        return item.getElementsByTagName(name).item(0).getTextContent();
-    }
 }

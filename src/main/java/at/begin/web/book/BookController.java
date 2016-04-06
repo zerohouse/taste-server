@@ -1,4 +1,4 @@
-package at.begin.web.movie;
+package at.begin.web.book;
 
 
 import at.begin.infra.response.JsonResponse;
@@ -12,25 +12,25 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 @RestController
-@RequestMapping("/api/v1/movie")
-public class MovieController {
+@RequestMapping("/api/v1/book")
+public class BookController {
 
     @Autowired
-    MovieService movieService;
+    BookService bookService;
 
     @RequestMapping(method = RequestMethod.POST)
-    public JsonResponse addMovie(@Logged User user, @RequestBody MovieDto movieDto) {
-        return movieService.addToCollection(user, movieDto);
+    public JsonResponse addMovie(@Logged User user, @RequestBody BookDto bookDto) {
+        return bookService.addToCollection(user, bookDto);
     }
 
     @RequestMapping(method = RequestMethod.DELETE)
     public JsonResponse addMovie(@Logged User user, String id) {
-        return movieService.removeFromCollection(user, id);
+        return bookService.removeFromCollection(user, id);
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/update")
-    public JsonResponse updateComment(@Logged User user, String id, String comment) {
-        return movieService.updateComment(user, id, comment);
+    public JsonResponse updateComment(@Logged User user, String link, String comment) {
+        return bookService.updateComment(user, link, comment);
     }
 
 }

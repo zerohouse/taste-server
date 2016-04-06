@@ -20,7 +20,7 @@ public class MovieService {
 
 
     public JsonResponse addToCollection(User user, MovieDto movieDto) {
-        Movie movie = movieRepository.findOne(movieDto.link);
+        Movie movie = movieRepository.findOne(movieDto.id);
         if (movie == null) {
             movie = new Movie(movieDto);
             movieRepository.save(movie);
@@ -30,15 +30,15 @@ public class MovieService {
         return successResponse(new MovieDto(userLikesMovie));
     }
 
-    public JsonResponse removeFromCollection(User user, String link) {
-        Movie movie = getEmptyMovie(link);
+    public JsonResponse removeFromCollection(User user, String id) {
+        Movie movie = getEmptyMovie(id);
         userLikesMovieRepository.deleteByUserAndMovie(user, movie);
         return successResponse();
     }
 
 
-    public JsonResponse updateComment(User user, String link, String comment) {
-        Movie movie = movieRepository.findOne(link);
+    public JsonResponse updateComment(User user, String id, String comment) {
+        Movie movie = movieRepository.findOne(id);
         UserLikesMovie userLikesMovie = userLikesMovieRepository.findByUserAndMovie(user, movie);
         userLikesMovie.setComment(comment);
         userLikesMovieRepository.save(userLikesMovie);
@@ -46,9 +46,9 @@ public class MovieService {
     }
 
 
-    private Movie getEmptyMovie(String link) {
+    private Movie getEmptyMovie(String id) {
         Movie movie = new Movie();
-        movie.setLink(link);
+        movie.setId(id);
         return movie;
     }
 }

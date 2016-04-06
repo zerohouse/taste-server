@@ -1,9 +1,9 @@
-package at.begin.web.exception.handler;
+package at.begin.infra.exception.handler;
 
-import at.begin.web.exception.DataNotExistException;
-import at.begin.web.exception.LoginNeededException;
-import at.begin.web.exception.SendErrorMessage;
-import at.begin.web.exception.SendWarningMessage;
+import at.begin.infra.exception.DataNotExistException;
+import at.begin.infra.exception.LoginNeededException;
+import at.begin.infra.exception.SendErrorMessage;
+import at.begin.infra.exception.SendWarningMessage;
 import at.begin.infra.response.JsonResponse;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
