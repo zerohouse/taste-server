@@ -1,6 +1,6 @@
-package at.begin.infra.inject.findbyid.findbyid;
+package at.begin.infra.inject.findbyid;
 
-import at.begin.infra.exception.DataNotExistException;
+import at.begin.web.exception.DataNotExistException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.core.MethodParameter;
 import org.springframework.data.jpa.repository.JpaRepository;

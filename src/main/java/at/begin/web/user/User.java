@@ -1,6 +1,7 @@
-package at.begin.product.user;
+package at.begin.web.user;
 
-import at.begin.infra.exception.handler.UniqueKeys;
+import at.begin.web.exception.handler.UniqueKeys;
+import at.begin.web.movie.UserLikesMovie;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,6 +12,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
@@ -22,6 +25,10 @@ import javax.persistence.*;
 public class User {
 
     private static final Logger logger = LoggerFactory.getLogger(User.class);
+
+
+    @OneToMany(mappedBy = "user")
+    List<UserLikesMovie> userLikesMovies = new ArrayList<>();
 
     @Id
     @Column
@@ -36,7 +43,6 @@ public class User {
 
     @Column
     String password;
-
 
     public boolean matchPassword(PasswordEncoder passwordEncoder, String password) {
         logger.debug("password passed : {}, password fromDB : {}", password, this.password);

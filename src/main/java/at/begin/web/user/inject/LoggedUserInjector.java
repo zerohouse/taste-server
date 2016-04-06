@@ -1,8 +1,8 @@
-package at.begin.product.user.inject;
+package at.begin.web.user.inject;
 
-import at.begin.infra.exception.LoginNeededException;
-import at.begin.product.user.User;
-import at.begin.product.user.UserRepository;
+import at.begin.web.exception.LoginNeededException;
+import at.begin.web.user.User;
+import at.begin.web.user.UserRepository;
 import org.springframework.core.MethodParameter;
 import org.springframework.web.bind.support.WebDataBinderFactory;
 import org.springframework.web.context.request.NativeWebRequest;

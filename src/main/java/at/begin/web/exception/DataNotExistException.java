@@ -1,4 +1,4 @@
-package at.begin.infra.exception;
+package at.begin.web.exception;
 
 public class DataNotExistException extends RuntimeException {
 }

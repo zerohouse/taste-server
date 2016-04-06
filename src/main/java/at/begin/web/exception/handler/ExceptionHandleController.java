@@ -1,15 +1,15 @@
-package at.begin.infra.exception.handler;
+package at.begin.web.exception.handler;
 
-import at.begin.infra.exception.DataNotExistException;
-import at.begin.infra.exception.LoginNeededException;
-import at.begin.infra.exception.SendErrorMessage;
-import at.begin.infra.exception.SendWarningMessage;
+import at.begin.web.exception.DataNotExistException;
+import at.begin.web.exception.LoginNeededException;
+import at.begin.web.exception.SendErrorMessage;
+import at.begin.web.exception.SendWarningMessage;
 import at.begin.infra.response.JsonResponse;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.ConstraintViolationException;
 
@@ -18,8 +18,8 @@ import static at.begin.infra.response.JsonResponseFactory.warningResponse;
 
 @Service
 @ControllerAdvice
+@RestController
 public class ExceptionHandleController {
-
 
     @ExceptionHandler(LoginNeededException.class)
     public JsonResponse loginException(LoginNeededException e) {

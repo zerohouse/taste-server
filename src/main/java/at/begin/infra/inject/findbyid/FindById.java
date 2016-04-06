@@ -1,4 +1,4 @@
-package at.begin.infra.inject.findbyid.findbyid;
+package at.begin.infra.inject.findbyid;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

@@ -1,4 +1,4 @@
-package at.begin.product.user;
+package at.begin.web.user;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
