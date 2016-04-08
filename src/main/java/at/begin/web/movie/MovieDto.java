@@ -21,19 +21,17 @@ public class MovieDto {
     String image;
     String subtitle;
     String pubDate;
-    // String userRating;
     String comment;
     List<String> directors;
     List<String> actors;
 
     public MovieDto(Element item) {
-        title = getProperty(item, "title").replaceAll("(<([^>]+)>)|(<[^<]+)$", "");
-        subtitle = getProperty(item, "subtitle").replaceAll("(<([^>]+)>)|(<[^<]+)$", "");
+        title = getProperty(item, "title");
+        subtitle = getProperty(item, "subtitle");
         link = getProperty(item, "link");
         image = getProperty(item, "image");
         id = title + ":" + subtitle;
         pubDate = getProperty(item, "pubDate");
-        // userRating = getProperty(item, "userRating");
         directors = getListProperty(item, "director");
         actors = getListProperty(item, "actor");
     }

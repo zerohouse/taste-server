@@ -44,6 +44,12 @@ public class UserService {
         return successResponse(new UserDto(user));
     }
 
+    public JsonResponse update(User user, User updated) {
+        user.update(updated);
+        userRepository.save(user);
+        return successResponse(new UserDto(user));
+    }
+
 //    public JsonResponse passwordRedefine(User user, HttpSession session) {
 //        User fromDB = userRepository.findByEmail(user.getEmail());
 //        if(!fromDB.getPhone().equals(user.getPhone()))
@@ -56,10 +62,4 @@ public class UserService {
 //        return successResponse(new UserDto(fromDB));
 //    }
 
-//    public JsonResponse update(User user, String name) {
-//        if(name == null)
-//            return errorResponse("값이 없습니다.");
-//        user.setName(name);
-//        return successResponse(userRepository.save(user));
-//    }
 }

@@ -21,7 +21,6 @@ public class BookDto {
     String image;
     String description;
     String pubDate;
-    // String userRating;
     String comment;
     List<String> authors;
     String publisher;

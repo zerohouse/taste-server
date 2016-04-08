@@ -1,7 +1,8 @@
-package at.begin.web.book;
+package at.begin.web.music;
 
 
 import at.begin.infra.response.JsonResponse;
+import at.begin.web.movie.MovieDto;
 import at.begin.web.user.User;
 import at.begin.web.user.inject.Logged;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,25 +13,25 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 @RestController
-@RequestMapping("/api/v1/book")
-public class BookController {
+@RequestMapping("/api/v1/music")
+public class MusicController {
 
     @Autowired
-    BookService bookService;
+    MusicService musicService;
 
     @RequestMapping(method = RequestMethod.POST)
-    public JsonResponse addBook(@Logged User user, @RequestBody BookDto bookDto) {
-        return bookService.addToCollection(user, bookDto);
+    public JsonResponse addMusic(@Logged User user, @RequestBody MusicDto musicDto) {
+        return musicService.addToCollection(user, musicDto);
     }
 
     @RequestMapping(method = RequestMethod.DELETE)
-    public JsonResponse removeBook(@Logged User user, String id) {
-        return bookService.removeFromCollection(user, id);
+    public JsonResponse removeMusic(@Logged User user, String id) {
+        return musicService.removeFromCollection(user, id);
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/update")
     public JsonResponse updateComment(@Logged User user, String id, String comment) {
-        return bookService.updateComment(user, id, comment);
+        return musicService.updateComment(user, id, comment);
     }
 
 }

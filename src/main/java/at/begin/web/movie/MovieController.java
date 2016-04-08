@@ -24,7 +24,7 @@ public class MovieController {
     }
 
     @RequestMapping(method = RequestMethod.DELETE)
-    public JsonResponse addMovie(@Logged User user, String id) {
+    public JsonResponse removeMovie(@Logged User user, String id) {
         return movieService.removeFromCollection(user, id);
     }
 

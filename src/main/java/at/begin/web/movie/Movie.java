@@ -1,5 +1,6 @@
 package at.begin.web.movie;
 
+import at.begin.web.music.MusicDto;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,6 +13,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import java.util.ArrayList;
 import java.util.List;
+
+import static at.begin.infra.util.Util.joinString;
 
 @Getter
 @Setter
@@ -60,9 +63,4 @@ public class Movie {
         actors = joinString(movieDto.actors);
     }
 
-    private String joinString(List<String> strings) {
-        StringBuilder builder = new StringBuilder();
-        strings.forEach(string -> builder.append(string).append("|"));
-        return builder.toString();
-    }
 }

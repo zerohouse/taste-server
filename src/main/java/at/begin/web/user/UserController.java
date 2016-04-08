@@ -40,11 +40,11 @@ public class UserController {
         return userService.register(user, session);
     }
 
-//    @RequestMapping(value = "/update", method = RequestMethod.POST)
-//    public JsonResponse registerUser(@Logged User user, String name) {
-//        return userService.update(user, name);
-//    }
-//
+    @RequestMapping(value = "/update", method = RequestMethod.POST)
+    public JsonResponse updateUser(@Logged User user, User updated) {
+        return userService.update(user, updated);
+    }
+
 //    @RequestMapping(method = RequestMethod.POST, value = "/passwordRedefine")
 //    public JsonResponse passwordRedefine(User user, HttpSession session) {
 //        return userService.passwordRedefine(user, session);

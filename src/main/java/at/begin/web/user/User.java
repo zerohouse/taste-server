@@ -3,6 +3,7 @@ package at.begin.web.user;
 import at.begin.infra.exception.handler.UniqueKeys;
 import at.begin.web.book.UserLikesBook;
 import at.begin.web.movie.UserLikesMovie;
+import at.begin.web.music.UserLikesMusic;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -34,6 +35,9 @@ public class User {
     @OneToMany(mappedBy = "user")
     List<UserLikesMovie> userLikesMovies = new ArrayList<>();
 
+    @OneToMany(mappedBy = "user")
+    List<UserLikesMusic> userLikesMusics = new ArrayList<>();
+
     @Id
     @Column
     @GeneratedValue
@@ -41,6 +45,15 @@ public class User {
 
     @Column
     String name;
+
+    @Column
+    String gender;
+
+    @Column
+    Integer age;
+
+    @Column
+    String district;
 
     @Column
     String email;
@@ -57,4 +70,10 @@ public class User {
         password = passwordEncoder.encode(password);
     }
 
+    public void update(User updated) {
+        name = updated.name;
+        age = updated.age;
+        district = updated.district;
+        gender = updated.gender;
+    }
 }
