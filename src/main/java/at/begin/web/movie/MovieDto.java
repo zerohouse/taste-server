@@ -1,5 +1,6 @@
 package at.begin.web.movie;
 
+import at.begin.infra.util.Util;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
@@ -7,6 +8,9 @@ import org.w3c.dom.Element;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
+import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 import static at.begin.infra.util.Util.getListProperty;
 import static at.begin.infra.util.Util.getProperty;
@@ -48,4 +52,14 @@ public class MovieDto {
         actors = Arrays.asList(userLikesMovie.movie.actors.split("\\|"));
     }
 
+    public MovieDto(Map map) {
+        title = (String) ((Map) ((List) map.get("title")).get(0)).get("content");
+        link = (String) ((Map) ((List) map.get("title")).get(0)).get("link");
+        subtitle = (String) ((Map) ((List) map.get("eng_title")).get(0)).get("content");
+        image = (String) ((Map) ((List) map.get("thumbnail")).get(0)).get("content");
+        pubDate = (String) ((Map) ((List) map.get("open_info")).get(0)).get("content");
+        id = Util.extract("movieId=([0-9]+)", link);
+        directors = ((List<Map>) map.get("director")).stream().map(director -> (String) director.get("content")).collect(Collectors.toList());
+        actors = ((List<Map>) map.get("actor")).stream().map(director -> (String) director.get("content")).collect(Collectors.toList());
+    }
 }

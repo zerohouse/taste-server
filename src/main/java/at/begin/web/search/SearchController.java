@@ -12,21 +12,21 @@ import static at.begin.infra.response.JsonResponseFactory.successResponse;
 public class SearchController {
 
     @Autowired
-    NaverSearchService naverSearchService;
+    SearchService searchService;
 
     @RequestMapping("/movie")
     public JsonResponse searchMovie(String query) {
-        return successResponse(naverSearchService.getMovies(query));
+        return successResponse(searchService.getMovies(query));
     }
 
     @RequestMapping("/book")
     public JsonResponse searchBook(String query) {
-        return successResponse(naverSearchService.getBooks(query));
+        return successResponse(searchService.getBooks(query));
     }
 
     @RequestMapping("/music")
     public JsonResponse searchMusic(String query) {
-        return successResponse(naverSearchService.getMusics(query));
+        return successResponse(searchService.getMusics(query));
     }
 
 }

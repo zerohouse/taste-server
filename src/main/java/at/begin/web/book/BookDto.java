@@ -7,6 +7,7 @@ import org.w3c.dom.Element;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 import static at.begin.infra.util.Util.getListProperty;
 import static at.begin.infra.util.Util.getProperty;
@@ -50,4 +51,22 @@ public class BookDto {
     }
 
 
+    public BookDto(Map googleApiData) {
+        Map volumeInfo = (Map) googleApiData.get("volumeInfo");
+        id = (String) googleApiData.get("id");
+        title = (String) volumeInfo.get("title");
+        link = (String) volumeInfo.get("infoLink");
+        description = (String) volumeInfo.get("description");
+        pubDate = (String) volumeInfo.get("publishedDate");
+        publisher = (String) volumeInfo.get("publisher");
+        authors = (List<String>) volumeInfo.get("authors");
+        Map imageLinks = (Map) volumeInfo.get("imageLinks");
+        if (imageLinks == null)
+            return;
+        image = (String) imageLinks.get("thumbnail");
+        if (image == null)
+            return;
+        image = image.replace("zoom=1", "zoom=2");
+        image = image.replace("&edge=curl", "");
+    }
 }

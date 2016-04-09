@@ -4,6 +4,8 @@ import org.w3c.dom.Element;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Util {
     public static String getProperty(Element item, String name) {
@@ -26,5 +28,13 @@ public class Util {
         if (result.length() == 0)
             return result;
         return result.substring(0, result.length() - 1);
+    }
+
+    public static String extract(String regex, String source) {
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(source);
+        if (matcher.find())
+            return matcher.group(1);
+        return null;
     }
 }
