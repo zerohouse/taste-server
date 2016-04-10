@@ -1,6 +1,6 @@
 package at.begin.web.search.getter;
 
-import at.begin.web.movie.MovieDto;
+import at.begin.web.content.movie.MovieDto;
 import com.google.api.client.http.HttpRequestFactory;
 
 import java.io.IOException;

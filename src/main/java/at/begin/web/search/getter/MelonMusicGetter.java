@@ -1,6 +1,6 @@
 package at.begin.web.search.getter;
 
-import at.begin.web.music.MusicDto;
+import at.begin.web.content.music.MusicDto;
 import com.google.api.client.http.HttpRequestFactory;
 
 import java.io.IOException;

@@ -1,6 +1,5 @@
 package at.begin.web.search.getter;
 
-import at.begin.web.music.MusicDto;
 import com.google.api.client.http.GenericUrl;
 import com.google.api.client.http.HttpRequest;
 import com.google.api.client.http.HttpRequestFactory;

@@ -1,9 +1,7 @@
 package at.begin.web.user;
 
 import at.begin.infra.exception.handler.UniqueKeys;
-import at.begin.web.book.UserLikesBook;
-import at.begin.web.movie.UserLikesMovie;
-import at.begin.web.music.UserLikesMusic;
+import at.begin.web.content.UserLikesContent;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -30,13 +28,7 @@ public class User {
 
 
     @OneToMany(mappedBy = "user")
-    List<UserLikesBook> userLikesBooks = new ArrayList<>();
-
-    @OneToMany(mappedBy = "user")
-    List<UserLikesMovie> userLikesMovies = new ArrayList<>();
-
-    @OneToMany(mappedBy = "user")
-    List<UserLikesMusic> userLikesMusics = new ArrayList<>();
+    List<UserLikesContent> userLikesContents = new ArrayList<>();
 
     @Id
     @Column

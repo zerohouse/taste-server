@@ -1,6 +1,5 @@
-package at.begin.web.music;
+package at.begin.web.content.music;
 
-import at.begin.web.movie.Movie;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface MusicRepository extends JpaRepository<Music, String> {

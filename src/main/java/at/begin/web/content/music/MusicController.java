@@ -1,8 +1,7 @@
-package at.begin.web.music;
+package at.begin.web.content.music;
 
 
 import at.begin.infra.response.JsonResponse;
-import at.begin.web.movie.MovieDto;
 import at.begin.web.user.User;
 import at.begin.web.user.inject.Logged;
 import org.springframework.beans.factory.annotation.Autowired;

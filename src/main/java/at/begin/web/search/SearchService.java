@@ -1,22 +1,15 @@
 package at.begin.web.search;
 
-import at.begin.web.book.BookDto;
-import at.begin.web.movie.MovieDto;
-import at.begin.web.music.MusicDto;
+import at.begin.web.content.book.BookDto;
+import at.begin.web.content.movie.MovieDto;
+import at.begin.web.content.music.MusicDto;
 import at.begin.web.search.getter.*;
 import com.google.api.client.http.*;
 import com.google.api.client.http.javanet.NetHttpTransport;
 import org.springframework.stereotype.Service;
-import org.w3c.dom.Document;
-import org.xml.sax.InputSource;
-import org.xml.sax.SAXException;
 
 import javax.annotation.PostConstruct;
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
-import java.io.StringReader;
 import java.util.List;
 
 @Service

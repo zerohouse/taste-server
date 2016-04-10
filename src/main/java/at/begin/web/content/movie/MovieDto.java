@@ -1,6 +1,9 @@
-package at.begin.web.movie;
+package at.begin.web.content.movie;
 
 import at.begin.infra.util.Util;
+import at.begin.web.content.ContentDto;
+import at.begin.web.content.ContentType;
+import at.begin.web.content.UserLikesContent;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
@@ -9,7 +12,6 @@ import org.w3c.dom.Element;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
-import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 import static at.begin.infra.util.Util.getListProperty;
@@ -18,7 +20,7 @@ import static at.begin.infra.util.Util.getProperty;
 @Getter
 @NoArgsConstructor
 @ToString
-public class MovieDto {
+public class MovieDto extends ContentDto {
     String id;
     String title;
     String link;
@@ -28,6 +30,7 @@ public class MovieDto {
     String comment;
     List<String> directors;
     List<String> actors;
+    ContentType type;
 
     public MovieDto(Element item) {
         title = getProperty(item, "title");
@@ -40,16 +43,17 @@ public class MovieDto {
         actors = getListProperty(item, "actor");
     }
 
-    public MovieDto(UserLikesMovie userLikesMovie) {
-        id = userLikesMovie.movie.id;
-        title = userLikesMovie.movie.title;
-        link = userLikesMovie.movie.link;
-        image = userLikesMovie.movie.image;
-        subtitle = userLikesMovie.movie.subtitle;
-        pubDate = userLikesMovie.movie.pubDate;
-        comment = userLikesMovie.comment;
-        directors = Arrays.asList(userLikesMovie.movie.directors.split("\\|"));
-        actors = Arrays.asList(userLikesMovie.movie.actors.split("\\|"));
+    public MovieDto(UserLikesContent userLikesContent) {
+        id = userLikesContent.getMovie().id;
+        title = userLikesContent.getMovie().title;
+        link = userLikesContent.getMovie().link;
+        image = userLikesContent.getMovie().image;
+        subtitle = userLikesContent.getMovie().subtitle;
+        pubDate = userLikesContent.getMovie().pubDate;
+        comment = userLikesContent.getComment();
+        directors = Arrays.asList(userLikesContent.getMovie().directors.split("\\|"));
+        actors = Arrays.asList(userLikesContent.getMovie().actors.split("\\|"));
+        type = ContentType.MOVIE;
     }
 
     public MovieDto(Map map) {
@@ -61,5 +65,6 @@ public class MovieDto {
         id = Util.extract("movieId=([0-9]+)", link);
         directors = ((List<Map>) map.get("director")).stream().map(director -> (String) director.get("content")).collect(Collectors.toList());
         actors = ((List<Map>) map.get("actor")).stream().map(director -> (String) director.get("content")).collect(Collectors.toList());
+        type = ContentType.MOVIE;
     }
 }

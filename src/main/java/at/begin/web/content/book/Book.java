@@ -1,6 +1,6 @@
-package at.begin.web.book;
+package at.begin.web.content.book;
 
-import at.begin.infra.util.Util;
+import at.begin.web.content.UserLikesContent;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -25,7 +25,7 @@ import static at.begin.infra.util.Util.joinString;
 public class Book {
 
     @OneToMany(mappedBy = "book")
-    private List<UserLikesBook> userLikesMovies = new ArrayList<>();
+    private List<UserLikesContent> userLikesContents = new ArrayList<>();
 
     @Id
     @Column

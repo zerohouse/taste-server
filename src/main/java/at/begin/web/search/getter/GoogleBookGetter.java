@@ -1,6 +1,6 @@
 package at.begin.web.search.getter;
 
-import at.begin.web.book.BookDto;
+import at.begin.web.content.book.BookDto;
 import com.google.api.client.http.HttpRequestFactory;
 
 import java.io.IOException;

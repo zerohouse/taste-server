@@ -1,4 +1,4 @@
-package at.begin.web.movie;
+package at.begin.web.content.movie;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

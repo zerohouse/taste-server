@@ -1,13 +1,14 @@
 package at.begin.web.user;
 
 
-import at.begin.web.book.BookDto;
-import at.begin.web.movie.MovieDto;
-import at.begin.web.music.MusicDto;
+import at.begin.web.content.ContentDto;
+import at.begin.web.content.book.BookDto;
+import at.begin.web.content.movie.MovieDto;
+import at.begin.web.content.music.MusicDto;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.Column;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -21,9 +22,7 @@ public class UserDto {
     String gender;
     Integer age;
     String district;
-    List<MovieDto> movies;
-    List<MusicDto> musics;
-    List<BookDto> books;
+    List<ContentDto> contents;
 
     public UserDto(User user) {
         id = user.id;
@@ -32,9 +31,15 @@ public class UserDto {
         gender = user.gender;
         age = user.age;
         district = user.district;
-        movies = user.userLikesMovies.stream().map(MovieDto::new).collect(Collectors.toList());
-        musics = user.userLikesMusics.stream().map(MusicDto::new).collect(Collectors.toList());
-        books = user.userLikesBooks.stream().map(BookDto::new).collect(Collectors.toList());
+        contents = user.userLikesContents.stream().map(userLikesContent -> {
+            if (userLikesContent.getMusic() != null)
+                return new MusicDto(userLikesContent);
+            if (userLikesContent.getMovie() != null)
+                return new MovieDto(userLikesContent);
+            if (userLikesContent.getBook() != null)
+                return new BookDto(userLikesContent);
+            return null;
+        }).collect(Collectors.toList());
     }
 
 }

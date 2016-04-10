@@ -1,6 +1,8 @@
-package at.begin.web.movie;
+package at.begin.web.content.movie;
 
 import at.begin.infra.response.JsonResponse;
+import at.begin.web.content.UserLikesContent;
+import at.begin.web.content.UserLikesContentRepository;
 import at.begin.web.user.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,7 +18,7 @@ public class MovieService {
     MovieRepository movieRepository;
 
     @Autowired
-    UserLikesMovieRepository userLikesMovieRepository;
+    UserLikesContentRepository userLikesContentRepository;
 
 
     public JsonResponse addToCollection(User user, MovieDto movieDto) {
@@ -25,23 +27,23 @@ public class MovieService {
             movie = new Movie(movieDto);
             movieRepository.save(movie);
         }
-        UserLikesMovie userLikesMovie = new UserLikesMovie(user, movie);
-        userLikesMovieRepository.save(userLikesMovie);
+        UserLikesContent userLikesMovie = new UserLikesContent(user, movie);
+        userLikesContentRepository.save(userLikesMovie);
         return successResponse(new MovieDto(userLikesMovie));
     }
 
     public JsonResponse removeFromCollection(User user, String id) {
         Movie movie = getEmptyMovie(id);
-        userLikesMovieRepository.deleteByUserAndMovie(user, movie);
+        userLikesContentRepository.deleteByUserAndMovie(user, movie);
         return successResponse();
     }
 
 
     public JsonResponse updateComment(User user, String id, String comment) {
         Movie movie = movieRepository.findOne(id);
-        UserLikesMovie userLikesMovie = userLikesMovieRepository.findByUserAndMovie(user, movie);
-        userLikesMovie.setComment(comment);
-        userLikesMovieRepository.save(userLikesMovie);
+        UserLikesContent userLikesContent = userLikesContentRepository.findByUserAndMovie(user, movie);
+        userLikesContent.setComment(comment);
+        userLikesContentRepository.save(userLikesContent);
         return successResponse();
     }
 

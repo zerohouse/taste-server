@@ -1,4 +1,4 @@
-package at.begin.web.book;
+package at.begin.web.content.book;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

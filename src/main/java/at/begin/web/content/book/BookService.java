@@ -1,6 +1,8 @@
-package at.begin.web.book;
+package at.begin.web.content.book;
 
 import at.begin.infra.response.JsonResponse;
+import at.begin.web.content.UserLikesContent;
+import at.begin.web.content.UserLikesContentRepository;
 import at.begin.web.user.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,7 +18,7 @@ public class BookService {
     BookRepository bookRepository;
 
     @Autowired
-    UserLikesBookRepository userLikesBookRepository;
+    UserLikesContentRepository userLikesContentRepository;
 
 
     public JsonResponse addToCollection(User user, BookDto bookDto) {
@@ -25,23 +27,23 @@ public class BookService {
             book = new Book(bookDto);
             bookRepository.save(book);
         }
-        UserLikesBook userLikesBook = new UserLikesBook(user, book);
-        userLikesBookRepository.save(userLikesBook);
-        return successResponse(new BookDto(userLikesBook));
+        UserLikesContent userLikesContent = new UserLikesContent(user, book);
+        userLikesContentRepository.save(userLikesContent);
+        return successResponse(new BookDto(userLikesContent));
     }
 
     public JsonResponse removeFromCollection(User user, String id) {
         Book book = getEmptyBook(id);
-        userLikesBookRepository.deleteByUserAndBook(user, book);
+        userLikesContentRepository.deleteByUserAndBook(user, book);
         return successResponse();
     }
 
 
     public JsonResponse updateComment(User user, String id, String comment) {
         Book book = bookRepository.findOne(id);
-        UserLikesBook userLikesBook = userLikesBookRepository.findByUserAndBook(user, book);
-        userLikesBook.setComment(comment);
-        userLikesBookRepository.save(userLikesBook);
+        UserLikesContent userLikesContent = userLikesContentRepository.findByUserAndBook(user, book);
+        userLikesContent.setComment(comment);
+        userLikesContentRepository.save(userLikesContent);
         return successResponse();
     }
 

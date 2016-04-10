@@ -1,5 +1,7 @@
-package at.begin.web.music;
+package at.begin.web.content.music;
 
+import at.begin.web.content.ContentType;
+import at.begin.web.content.UserLikesContent;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -7,6 +9,8 @@ import lombok.Setter;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
@@ -16,6 +20,8 @@ import javax.persistence.*;
 @org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class Music {
 
+    @OneToMany(mappedBy = "music")
+    private List<UserLikesContent> userLikesContents = new ArrayList<>();
 
     @Id
     @Column
@@ -44,7 +50,7 @@ public class Music {
 
     @Enumerated(EnumType.STRING)
     @Column
-    MusicType type;
+    ContentType type;
 
 
     public Music(MusicDto musicDto) {

@@ -1,7 +1,8 @@
-package at.begin.web.music;
+package at.begin.web.content.music;
 
 import at.begin.infra.response.JsonResponse;
-import at.begin.web.movie.*;
+import at.begin.web.content.UserLikesContent;
+import at.begin.web.content.UserLikesContentRepository;
 import at.begin.web.user.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,7 +18,7 @@ public class MusicService {
     MusicRepository musicRepository;
 
     @Autowired
-    UserLikesMusicRepository userLikesMusicRepository;
+    UserLikesContentRepository userLikesContentRepository;
 
 
     public JsonResponse addToCollection(User user, MusicDto musicDto) {
@@ -26,23 +27,23 @@ public class MusicService {
             music = new Music(musicDto);
             musicRepository.save(music);
         }
-        UserLikesMusic userLikesMusic = new UserLikesMusic(user, music);
-        userLikesMusicRepository.save(userLikesMusic);
-        return successResponse(new MusicDto(userLikesMusic));
+        UserLikesContent userLikesContent = new UserLikesContent(user, music);
+        userLikesContentRepository.save(userLikesContent);
+        return successResponse(new MusicDto(userLikesContent));
     }
 
     public JsonResponse removeFromCollection(User user, String id) {
         Music music = getEmptyMusic(id);
-        userLikesMusicRepository.deleteByUserAndMusic(user, music);
+        userLikesContentRepository.deleteByUserAndMusic(user, music);
         return successResponse();
     }
 
 
     public JsonResponse updateComment(User user, String id, String comment) {
         Music music = musicRepository.findOne(id);
-        UserLikesMusic userLikesMusic = userLikesMusicRepository.findByUserAndMusic(user, music);
-        userLikesMusic.setComment(comment);
-        userLikesMusicRepository.save(userLikesMusic);
+        UserLikesContent userLikesContent = userLikesContentRepository.findByUserAndMusic(user, music);
+        userLikesContent.setComment(comment);
+        userLikesContentRepository.save(userLikesContent);
         return successResponse();
     }
 

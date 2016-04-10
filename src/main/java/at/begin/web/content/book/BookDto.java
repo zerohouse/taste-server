@@ -1,5 +1,8 @@
-package at.begin.web.book;
+package at.begin.web.content.book;
 
+import at.begin.web.content.ContentDto;
+import at.begin.web.content.ContentType;
+import at.begin.web.content.UserLikesContent;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
@@ -15,7 +18,7 @@ import static at.begin.infra.util.Util.getProperty;
 @Getter
 @NoArgsConstructor
 @ToString
-public class BookDto {
+public class BookDto extends ContentDto {
     String id;
     String title;
     String link;
@@ -25,6 +28,7 @@ public class BookDto {
     String comment;
     List<String> authors;
     String publisher;
+    ContentType type;
 
     public BookDto(Element item) {
         id = getProperty(item, "isbn");
@@ -35,19 +39,21 @@ public class BookDto {
         pubDate = getProperty(item, "pubdate");
         publisher = getProperty(item, "publisher");
         authors = getListProperty(item, "author");
+        type = ContentType.BOOK;
     }
 
 
-    public BookDto(UserLikesBook userLikesBook) {
-        id = userLikesBook.book.id;
-        title = userLikesBook.book.title;
-        link = userLikesBook.book.link;
-        image = userLikesBook.book.image;
-        description = userLikesBook.book.description;
-        pubDate = userLikesBook.book.pubDate;
-        publisher = userLikesBook.book.publisher;
-        comment = userLikesBook.comment;
-        authors = Arrays.asList(userLikesBook.book.authors.split("\\|"));
+    public BookDto(UserLikesContent userLikesContent) {
+        id = userLikesContent.getBook().id;
+        title = userLikesContent.getBook().title;
+        link = userLikesContent.getBook().link;
+        image = userLikesContent.getBook().image;
+        description = userLikesContent.getBook().description;
+        pubDate = userLikesContent.getBook().pubDate;
+        publisher = userLikesContent.getBook().publisher;
+        comment = userLikesContent.getComment();
+        authors = Arrays.asList(userLikesContent.getBook().authors.split("\\|"));
+        type = ContentType.BOOK;
     }
 
 

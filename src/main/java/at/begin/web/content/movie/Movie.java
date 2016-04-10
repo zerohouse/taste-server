@@ -1,6 +1,6 @@
-package at.begin.web.movie;
+package at.begin.web.content.movie;
 
-import at.begin.web.music.MusicDto;
+import at.begin.web.content.UserLikesContent;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -25,7 +25,7 @@ import static at.begin.infra.util.Util.joinString;
 public class Movie {
 
     @OneToMany(mappedBy = "movie")
-    private List<UserLikesMovie> userLikesMovies = new ArrayList<>();
+    private List<UserLikesContent> userLikesContents = new ArrayList<>();
 
     @Id
     @Column
