@@ -10,6 +10,7 @@ import lombok.ToString;
 import org.w3c.dom.Element;
 
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -31,6 +32,8 @@ public class MovieDto extends ContentDto {
     List<String> directors;
     List<String> actors;
     ContentType type;
+    Date createAt;
+    Date updateAt;
 
     public MovieDto(Element item) {
         title = getProperty(item, "title");
@@ -54,6 +57,8 @@ public class MovieDto extends ContentDto {
         directors = Arrays.asList(userLikesContent.getMovie().directors.split("\\|"));
         actors = Arrays.asList(userLikesContent.getMovie().actors.split("\\|"));
         type = ContentType.MOVIE;
+        createAt = userLikesContent.getCreatedAt();
+        updateAt = userLikesContent.getUpdateAt();
     }
 
     public MovieDto(Map map) {

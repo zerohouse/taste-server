@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.util.Date;
 import java.util.Map;
 
 @ToString
@@ -31,6 +32,8 @@ public class MusicDto extends ContentDto {
     String description;
     ContentType type;
     String comment;
+    Date createAt;
+    Date updateAt;
 
     public MusicDto(UserLikesContent userLikesContent) {
         id = userLikesContent.getMusic().id;
@@ -42,6 +45,8 @@ public class MusicDto extends ContentDto {
         type = userLikesContent.getMusic().type;
         link = userLikesContent.getMusic().link;
         comment = userLikesContent.getComment();
+        createAt = userLikesContent.getCreatedAt();
+        updateAt = userLikesContent.getUpdateAt();
     }
 
     public void setAsArtistContent(Map artistContent) {

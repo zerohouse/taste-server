@@ -40,7 +40,7 @@ public class Book {
     @Column
     String image;
 
-    @Column
+    @Column(length = 1250)
     String description;
 
     @Column

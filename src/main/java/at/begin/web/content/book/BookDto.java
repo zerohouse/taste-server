@@ -9,6 +9,7 @@ import lombok.ToString;
 import org.w3c.dom.Element;
 
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -29,6 +30,8 @@ public class BookDto extends ContentDto {
     List<String> authors;
     String publisher;
     ContentType type;
+    Date createAt;
+    Date updateAt;
 
     public BookDto(Element item) {
         id = getProperty(item, "isbn");
@@ -54,6 +57,8 @@ public class BookDto extends ContentDto {
         comment = userLikesContent.getComment();
         authors = Arrays.asList(userLikesContent.getBook().authors.split("\\|"));
         type = ContentType.BOOK;
+        createAt = userLikesContent.getCreatedAt();
+        updateAt = userLikesContent.getUpdateAt();
     }
 
 
@@ -74,5 +79,6 @@ public class BookDto extends ContentDto {
             return;
         image = image.replace("zoom=1", "zoom=2");
         image = image.replace("&edge=curl", "");
+        type = ContentType.BOOK;
     }
 }
