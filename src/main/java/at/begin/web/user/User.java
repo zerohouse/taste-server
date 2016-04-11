@@ -51,6 +51,9 @@ public class User {
     String email;
 
     @Column
+    String photo;
+
+    @Column
     String password;
 
     public boolean matchPassword(PasswordEncoder passwordEncoder, String password) {

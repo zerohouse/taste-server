@@ -20,6 +20,7 @@ public class UserDto {
     String name;
     String email;
     String gender;
+    String photo;
     Integer age;
     String district;
     List<ContentDto> contents;
@@ -29,6 +30,7 @@ public class UserDto {
         name = user.name;
         email = user.email;
         gender = user.gender;
+        photo = user.photo;
         age = user.age;
         district = user.district;
         contents = user.userLikesContents.stream().map(userLikesContent -> {
