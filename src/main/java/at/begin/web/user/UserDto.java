@@ -21,6 +21,7 @@ public class UserDto {
     String email;
     String gender;
     String photo;
+    String introduce;
     Integer age;
     String district;
     List<ContentDto> contents;
@@ -30,6 +31,7 @@ public class UserDto {
         name = user.name;
         email = user.email;
         gender = user.gender;
+        introduce = user.introduce;
         photo = user.photo;
         age = user.age;
         district = user.district;

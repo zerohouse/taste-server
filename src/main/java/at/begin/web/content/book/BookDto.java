@@ -39,6 +39,8 @@ public class BookDto extends ContentDto {
         description = getProperty(item, "description");
         link = getProperty(item, "link");
         image = getProperty(item, "image");
+        if(image != null)
+            image = image.replace("type=m1", "type=m5");
         pubDate = getProperty(item, "pubdate");
         publisher = getProperty(item, "publisher");
         authors = getListProperty(item, "author");
