@@ -19,6 +19,11 @@ public class SearchController {
         return successResponse(searchService.getMovies(query));
     }
 
+    @RequestMapping("/movie/text")
+    public JsonResponse searchMovieKeyword(String query) {
+        return successResponse(searchService.getMoviesKeyword(query));
+    }
+
     @RequestMapping("/book")
     public JsonResponse searchBook(String query) {
         return successResponse(searchService.getBooks(query));

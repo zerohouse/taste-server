@@ -44,6 +44,7 @@ public class MovieDto extends ContentDto {
         pubDate = getProperty(item, "pubDate");
         directors = getListProperty(item, "director");
         actors = getListProperty(item, "actor");
+        type = ContentType.MOVIE;
     }
 
     public MovieDto(UserLikesContent userLikesContent) {

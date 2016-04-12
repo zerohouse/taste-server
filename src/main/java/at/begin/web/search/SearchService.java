@@ -19,13 +19,14 @@ public class SearchService {
     HttpObjectGetter<MusicDto> musicGetter;
     HttpObjectGetter<BookDto> bookGetter;
     HttpObjectGetter<MovieDto> movieGetter;
+    HttpObjectGetter<MovieDto> naverMovieGetter;
 
     @PostConstruct
     public void setup() {
         HttpTransport httpTransport = new NetHttpTransport();
         httpRequestFactory = httpTransport.createRequestFactory();
         musicGetter = new MelonMusicGetter(httpRequestFactory);
-//        movieGetter = new NaverMovieGetter(httpRequestFactory);
+        naverMovieGetter = new NaverMovieGetter(httpRequestFactory);
         movieGetter = new DaumMovieGetter(httpRequestFactory);
 //        bookGetter = new GoogleBookGetter(httpRequestFactory);
         bookGetter = new NaverBookGetter(httpRequestFactory);
@@ -33,6 +34,10 @@ public class SearchService {
 
     public List<MovieDto> getMovies(String query) {
         return getObjectList(movieGetter, query);
+    }
+
+    public List<MovieDto> getMoviesKeyword(String query) {
+        return getObjectList(naverMovieGetter, query);
     }
 
     public List<MusicDto> getMusics(String query) {
