@@ -1,14 +1,7 @@
 package at.begin.web.user;
 
-import at.begin.web.chat.ChatDto;
-import at.begin.web.content.book.BookDto;
-import at.begin.web.content.movie.MovieDto;
-import at.begin.web.content.music.MusicDto;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-import java.util.stream.Collectors;
 
 @Getter
 @Setter

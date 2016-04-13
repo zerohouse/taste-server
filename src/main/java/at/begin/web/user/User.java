@@ -3,7 +3,6 @@ package at.begin.web.user;
 import at.begin.infra.exception.handler.UniqueKeys;
 import at.begin.web.alarm.Alarm;
 import at.begin.web.chat.Chat;
-import at.begin.web.chat.ChatDto;
 import at.begin.web.chat.message.Message;
 import at.begin.web.content.UserLikesContent;
 import lombok.EqualsAndHashCode;
@@ -18,7 +17,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Getter
 @Setter

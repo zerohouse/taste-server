@@ -8,8 +8,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import static at.begin.infra.response.JsonResponseFactory.successResponse;
-
 @RestController
 @RequestMapping("/api/v1/chat")
 public class ChatController {

@@ -3,7 +3,6 @@ package at.begin.web.upload;
 import at.begin.infra.response.JsonResponse;
 import at.begin.web.user.User;
 import at.begin.web.user.inject.Logged;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.web.bind.annotation.RequestMapping;

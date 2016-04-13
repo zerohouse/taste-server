@@ -4,7 +4,8 @@ import at.begin.web.content.book.BookDto;
 import at.begin.web.content.movie.MovieDto;
 import at.begin.web.content.music.MusicDto;
 import at.begin.web.search.getter.*;
-import com.google.api.client.http.*;
+import com.google.api.client.http.HttpRequestFactory;
+import com.google.api.client.http.HttpTransport;
 import com.google.api.client.http.javanet.NetHttpTransport;
 import org.springframework.stereotype.Service;
 
