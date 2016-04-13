@@ -1,5 +1,6 @@
 package at.begin.infra.util;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.w3c.dom.Element;
 
 import java.util.Arrays;
@@ -8,6 +9,9 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Util {
+
+    public final static ObjectMapper OBJECT_MAPPER = new ObjectMapper();
+
     public static String getProperty(Element item, String name) {
         if (item.getElementsByTagName(name).getLength() == 0)
             return null;

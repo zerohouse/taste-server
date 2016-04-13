@@ -1,6 +1,10 @@
 package at.begin.web.user;
 
 import at.begin.infra.exception.handler.UniqueKeys;
+import at.begin.web.alarm.Alarm;
+import at.begin.web.chat.Chat;
+import at.begin.web.chat.ChatDto;
+import at.begin.web.chat.message.Message;
 import at.begin.web.content.UserLikesContent;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -14,6 +18,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Getter
 @Setter
@@ -26,6 +31,23 @@ public class User {
 
     private static final Logger logger = LoggerFactory.getLogger(User.class);
 
+    @OneToMany(mappedBy = "user")
+    List<Message> messages = new ArrayList<>();
+
+    @OneToMany(mappedBy = "hostUser")
+    List<Chat> userHostChats = new ArrayList<>();
+
+    @OneToMany(mappedBy = "invitedUser")
+    List<Chat> userInvitedChats = new ArrayList<>();
+
+    @OneToMany(mappedBy = "user")
+    List<UserMatchedUser> userMatchingUsers = new ArrayList<>();
+
+    @OneToMany(mappedBy = "matched")
+    List<UserMatchedUser> userMatchedUsers = new ArrayList<>();
+
+    @OneToMany(mappedBy = "user")
+    List<Alarm> alarms = new ArrayList<>();
 
     @OneToMany(mappedBy = "user")
     List<UserLikesContent> userLikesContents = new ArrayList<>();
@@ -73,5 +95,12 @@ public class User {
         age = updated.age;
         district = updated.district;
         gender = updated.gender;
+    }
+
+    public List<Chat> getAllChats() {
+        List<Chat> chats = new ArrayList<>();
+        chats.addAll(userHostChats);
+        chats.addAll(userInvitedChats);
+        return chats;
     }
 }
