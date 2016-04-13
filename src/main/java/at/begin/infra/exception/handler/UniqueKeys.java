@@ -12,7 +12,7 @@ public class UniqueKeys {
     public static final String LINK_ALREADY_EXIST = "LINK_ALREADY_EXIST";
     public static final String CONTENT_ALREADY_EXIST = "CONTENT_ALREADY_EXIST";
     public static final String CHAT_ALREADY_EXIST = "CHAT_ALREADY_EXIST";
-    public static final String RELATION_ALREADY_EXIST = "CHAT_ALREADY_EXIST";
+    public static final String RELATION_ALREADY_EXIST = "RELATION_ALREADY_EXIST";
 
     static {
         pattern = Pattern.compile("'(\\w+)'$");

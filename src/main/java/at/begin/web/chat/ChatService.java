@@ -37,6 +37,7 @@ public class ChatService {
         chat.setHostUser(user);
         chat.setInvitedUser(invited);
         chat.setState(ChatState.NOT_ACCEPTED);
+        chatRepository.save(chat);
         return successResponse(new ChatDto(chat));
     }
 
@@ -80,6 +81,7 @@ public class ChatService {
         chatMessage.setMessage(message);
         chatMessage.setCreateAt(new Date());
         chat.getMessages().add(chatMessage);
+        messageRepository.save(chatMessage);
         return successResponse(new MessageDto(chatMessage));
     }
 

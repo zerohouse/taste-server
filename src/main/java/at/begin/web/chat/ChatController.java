@@ -30,6 +30,11 @@ public class ChatController {
         return chatService.decline(user, chat);
     }
 
+    @RequestMapping("/leave")
+    public JsonResponse chatLeave(@Logged User user, Long chat) {
+        return chatService.leave(user, chat);
+    }
+
     @RequestMapping(value = "/message", method = RequestMethod.POST)
     public JsonResponse message(@Logged User user, String message, Long chat) {
         return chatService.chat(user, message, chat);
