@@ -1,7 +1,6 @@
 package at.begin.web.user;
 
 import at.begin.infra.exception.handler.UniqueKeys;
-import at.begin.web.alarm.Alarm;
 import at.begin.web.chat.Chat;
 import at.begin.web.chat.message.Message;
 import at.begin.web.content.UserLikesContent;
@@ -43,9 +42,6 @@ public class User {
 
     @OneToMany(mappedBy = "matched")
     List<UserMatchedUser> userMatchedUsers = new ArrayList<>();
-
-    @OneToMany(mappedBy = "user")
-    List<Alarm> alarms = new ArrayList<>();
 
     @OneToMany(mappedBy = "user")
     List<UserLikesContent> userLikesContents = new ArrayList<>();
