@@ -19,10 +19,6 @@ public class UserController {
     @Autowired
     UserService userService;
 
-//    @RequestMapping("/exist")
-//    public JsonResponse isExistUser(String email) {
-//        return userService.isExistUser(email);
-//    }
 
     @RequestMapping("/login")
     public JsonResponse isExistUser(User user, HttpSession session) {
@@ -45,10 +41,6 @@ public class UserController {
         return userService.update(user, updated);
     }
 
-//    @RequestMapping(method = RequestMethod.POST, value = "/passwordRedefine")
-//    public JsonResponse passwordRedefine(User user, HttpSession session) {
-//        return userService.passwordRedefine(user, session);
-//    }
 
     @RequestMapping(method = RequestMethod.GET)
     public JsonResponse getUser(@Logged(makeLoginNeededException = false) User user) {

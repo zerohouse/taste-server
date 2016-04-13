@@ -43,12 +43,12 @@ public class ExceptionHandleController {
 
     @ExceptionHandler(ConstraintViolationException.class)
     public JsonResponse ConstraintViolationException(ConstraintViolationException e) {
-        return errorResponse(e.getConstraintViolations().iterator().next().getMessageTemplate());
+        return warningResponse(e.getConstraintViolations().iterator().next().getMessageTemplate());
     }
 
     @ExceptionHandler(DataIntegrityViolationException.class)
     public JsonResponse dataIntegrityViolationException(DataIntegrityViolationException e) {
-        return errorResponse(UniqueKeys.getErrorMessage(e.getCause().getCause().getMessage()));
+        return warningResponse(UniqueKeys.getErrorMessage(e.getCause().getCause().getMessage()));
     }
 
 }

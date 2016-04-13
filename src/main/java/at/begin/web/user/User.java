@@ -14,6 +14,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -51,18 +53,24 @@ public class User {
     @GeneratedValue
     long id;
 
+    @NotNull(message = "이름을 입력해주세요.")
     @Column
     String name;
 
+    @NotNull(message = "성별을 입력해주세요.")
     @Column
     String gender;
 
+    @NotNull(message = "나이를 입력해주세요.")
     @Column
     Integer age;
 
+    @NotNull(message = "지역을 입력해주세요.")
     @Column
     String district;
 
+    @NotNull(message = "이메일을 입력해주세요.")
+    @Pattern(regexp = "^.+@.+\\..+$", message = "이메일 형식이 맞지 않습니다.")
     @Column
     String email;
 
@@ -72,6 +80,7 @@ public class User {
     @Column
     String introduce;
 
+    @NotNull(message = "암호를 입력해주세요.")
     @Column
     String password;
 
@@ -89,6 +98,7 @@ public class User {
         age = updated.age;
         district = updated.district;
         gender = updated.gender;
+        introduce = updated.introduce;
     }
 
     public List<Chat> getAllChats() {
