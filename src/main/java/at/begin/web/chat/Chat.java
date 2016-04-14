@@ -61,5 +61,10 @@ public class Chat {
             invitedUser = null;
 
     }
+
+    public void clearUser() {
+        hostUser = null;
+        invitedUser = null;
+    }
 }
 

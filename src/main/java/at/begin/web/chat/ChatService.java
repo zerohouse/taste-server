@@ -64,6 +64,16 @@ public class ChatService {
         Chat chat = chatRepository.findOne(chatId);
         if (!chat.isJoinedUser(user))
             return errorResponse();
+        if (chat.state == ChatState.NOT_ACCEPTED) { // 아직 수락하기 전이면
+            if (chat.isInvited(user)) { // 초대된 유저면
+                chat.setState(ChatState.DECLINED); // 채팅방 거부상태로 만들고
+                chat.exit(user);
+                return successResponse(new ChatDto(chat));
+            }
+            chat.setState(ChatState.CLOSED); // 초대한 유저면 채팅방 닫힘 상태
+            chat.clearUser(); // 다나감처리
+            return successResponse(new ChatDto(chat));
+        }
         chat.exit(user);
         chat.setState(ChatState.CLOSED);
         return successResponse(new ChatDto(chat));
