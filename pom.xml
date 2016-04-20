@@ -104,12 +104,13 @@
             <version>1.21.0</version>
         </dependency>
         <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-ehcache</artifactId>
-            <version>4.3.11.Final</version>
+            <groupId>smspost</groupId>
+            <artifactId>com.smspost</artifactId>
+            <version>1.0</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/src/main/resources/sms.jar</systemPath>
         </dependency>
     </dependencies>
-
     <build>
         <finalName>taste</finalName>
         <resources>
