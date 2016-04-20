@@ -4,6 +4,7 @@ import at.begin.infra.exception.handler.UniqueKeys;
 import at.begin.web.chat.Chat;
 import at.begin.web.chat.message.Message;
 import at.begin.web.content.UserLikesContent;
+import at.begin.web.reply.Reply;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -29,6 +30,9 @@ import java.util.List;
 public class User {
 
     private static final Logger logger = LoggerFactory.getLogger(User.class);
+
+    @OneToMany(mappedBy = "user")
+    List<Reply> replies = new ArrayList<>();
 
     @OneToMany(mappedBy = "user")
     List<Message> messages = new ArrayList<>();

@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.servlet.http.HttpSession;
+import java.util.HashMap;
+import java.util.Map;
 
 import static at.begin.infra.response.JsonResponseFactory.successResponse;
 import static at.begin.infra.response.JsonResponseFactory.warningResponse;
@@ -48,6 +50,13 @@ public class UserService {
         user.update(updated);
         userRepository.save(user);
         return successResponse(new UserDto(user));
+    }
+
+    public JsonResponse count() {
+        Map map = new HashMap<>();
+        map.put("male", userRepository.countByGender("남"));
+        map.put("female", userRepository.countByGender("여"));
+        return successResponse(map);
     }
 
 //    public JsonResponse passwordRedefine(User user, HttpSession session) {

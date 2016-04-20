@@ -19,6 +19,10 @@ public class UserController {
     @Autowired
     UserService userService;
 
+    @RequestMapping("/count")
+    public JsonResponse count() {
+        return userService.count();
+    }
 
     @RequestMapping("/login")
     public JsonResponse isExistUser(User user, HttpSession session) {
