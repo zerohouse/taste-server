@@ -5,6 +5,7 @@ import org.w3c.dom.Element;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -22,6 +23,15 @@ public class Util {
         String source = Util.getProperty(item, name);
         if (source == null) return null;
         return Arrays.asList(source.split("\\|"));
+    }
+
+    public static String rand(String source, int length) {
+        Random random = new Random();
+        String result = "";
+        for (int i = 0; i < length; i++) {
+            result += source.charAt(random.nextInt(source.length()));
+        }
+        return result;
     }
 
 

@@ -104,11 +104,14 @@
             <version>1.21.0</version>
         </dependency>
         <dependency>
-            <groupId>smspost</groupId>
-            <artifactId>com.smspost</artifactId>
-            <version>1.0</version>
-            <scope>system</scope>
-            <systemPath>${project.basedir}/src/main/resources/sms.jar</systemPath>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-ehcache</artifactId>
+            <version>4.3.11.Final</version>
+        </dependency>
+        <dependency>
+            <groupId>com.amazonaws</groupId>
+            <artifactId>aws-java-sdk-ses</artifactId>
+            <version>1.10.72</version>
         </dependency>
     </dependencies>
     <build>

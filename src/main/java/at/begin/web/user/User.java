@@ -1,6 +1,9 @@
 package at.begin.web.user;
 
+import at.begin.infra.exception.SendErrorMessage;
 import at.begin.infra.exception.handler.UniqueKeys;
+import at.begin.web.auth.PhoneAuth;
+import at.begin.web.auth.PhoneAuthRepository;
 import at.begin.web.chat.Chat;
 import at.begin.web.chat.message.Message;
 import at.begin.web.content.UserLikesContent;
@@ -19,6 +22,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Getter
 @Setter
@@ -61,15 +65,18 @@ public class User {
     @Column
     String name;
 
-    @NotNull(message = "성별을 입력해주세요.")
     @Column
     String gender;
 
-    @NotNull(message = "나이를 입력해주세요.")
     @Column
     Integer age;
 
-    @NotNull(message = "지역을 입력해주세요.")
+    @Column
+    String phone;
+
+    @Column
+    Boolean matching;
+
     @Column
     String district;
 
@@ -97,12 +104,43 @@ public class User {
         password = passwordEncoder.encode(password);
     }
 
-    public void update(User updated) {
+    public void update(User updated, String auth, PhoneAuthRepository phoneAuthRepository) {
+        if (updated.matching != null && updated.matching) {
+            if (updated.name == null) {
+                throw new SendErrorMessage("매칭에 참여하려면 이름을 입력해야 합니다.");
+            }
+            if (updated.age == null) {
+                throw new SendErrorMessage("매칭에 참여하려면 나이를 입력해야 합니다.");
+            }
+            if (updated.phone == null) {
+                throw new SendErrorMessage("매칭에 참여하려면 연락처를 입력해야 합니다.");
+            }
+            if (updated.gender == null) {
+                throw new SendErrorMessage("매칭에 참여하려면 성별을 입력해야 합니다.");
+            }
+            if (updated.district == null) {
+                throw new SendErrorMessage("매칭에 참여하려면 지역을 입력해야 합니다.");
+            }
+            if (updated.introduce == null) {
+                throw new SendErrorMessage("매칭에 참여하려면 소개말을 입력해야 합니다.");
+            }
+        }
         name = updated.name;
         age = updated.age;
         district = updated.district;
         gender = updated.gender;
         introduce = updated.introduce;
+        matching = updated.matching;
+        if (Objects.equals(phone, updated.phone))
+            return;
+        if (auth == null)
+            throw new SendErrorMessage("인증번호가 다릅니다.");
+        PhoneAuth phoneAuth = phoneAuthRepository.findByPhone(updated.phone);
+        if (phoneAuth == null)
+            throw new SendErrorMessage("인증번호가 다릅니다.");
+        if (!phoneAuth.getNumber().equals(auth))
+            throw new SendErrorMessage("인증번호가 다릅니다.");
+        phone = updated.phone.replace("-","");
     }
 
     public List<Chat> getAllChats() {

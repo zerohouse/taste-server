@@ -14,6 +14,8 @@ public class UserCoreDto {
     String introduce;
     Integer age;
     String district;
+    Boolean matching;
+    String phone;
 
     public UserCoreDto(User user) {
         id = user.id;
@@ -24,6 +26,8 @@ public class UserCoreDto {
         photo = user.photo;
         age = user.age;
         district = user.district;
+        phone = user.phone;
+        matching = user.matching;
     }
 
 }

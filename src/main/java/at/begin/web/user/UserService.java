@@ -1,6 +1,7 @@
 package at.begin.web.user;
 
 import at.begin.infra.response.JsonResponse;
+import at.begin.web.auth.PhoneAuthRepository;
 import at.begin.web.user.inject.LoggedUserInjector;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -25,6 +26,9 @@ public class UserService {
     @Autowired
     PasswordEncoder passwordEncoder;
 
+    @Autowired
+    PhoneAuthRepository phoneAuthRepository;
+
     public JsonResponse isExistUser(String email) {
         return successResponse(null != userRepository.findByEmail(email));
     }
@@ -46,8 +50,8 @@ public class UserService {
         return successResponse(new UserDto(user));
     }
 
-    public JsonResponse update(User user, User updated) {
-        user.update(updated);
+    public JsonResponse update(User user, User updated, String auth) {
+        user.update(updated, auth, phoneAuthRepository);
         userRepository.save(user);
         return successResponse(new UserDto(user));
     }

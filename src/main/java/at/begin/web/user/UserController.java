@@ -41,8 +41,8 @@ public class UserController {
     }
 
     @RequestMapping(value = "/update", method = RequestMethod.POST)
-    public JsonResponse updateUser(@Logged User user, User updated) {
-        return userService.update(user, updated);
+    public JsonResponse updateUser(@Logged User user, User updated, String auth) {
+        return userService.update(user, updated, auth);
     }
 
 
