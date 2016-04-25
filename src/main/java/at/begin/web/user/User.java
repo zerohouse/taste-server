@@ -135,7 +135,7 @@ public class User {
             return;
         if (auth == null)
             throw new SendErrorMessage("인증번호가 다릅니다.");
-        PhoneAuth phoneAuth = phoneAuthRepository.findByPhone(updated.phone);
+        PhoneAuth phoneAuth = phoneAuthRepository.findFirstByPhoneOrderByIdDesc(updated.phone);
         if (phoneAuth == null)
             throw new SendErrorMessage("인증번호가 다릅니다.");
         if (!phoneAuth.getNumber().equals(auth))
