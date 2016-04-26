@@ -63,6 +63,11 @@ public class UserService {
         return successResponse(map);
     }
 
+    public JsonResponse getUser(String email) {
+        User user = userRepository.findByEmail(email);
+        return successResponse(new UserDto(user));
+    }
+
 //    public JsonResponse passwordRedefine(User user, HttpSession session) {
 //        User fromDB = userRepository.findByEmail(user.getEmail());
 //        if(!fromDB.getPhone().equals(user.getPhone()))

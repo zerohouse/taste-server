@@ -46,11 +46,17 @@ public class UserController {
     }
 
 
-    @RequestMapping(method = RequestMethod.GET)
-    public JsonResponse getUser(@Logged(makeLoginNeededException = false) User user) {
+    @RequestMapping(value = "/session", method = RequestMethod.GET)
+    public JsonResponse getSessionUser(@Logged(makeLoginNeededException = false) User user) {
         if (user == null)
             return new JsonResponse(ResultStatus.NO_RESULT);
         return JsonResponseFactory.successResponse(new UserDto(user));
     }
+
+    @RequestMapping(method = RequestMethod.GET)
+    public JsonResponse getUser(String email) {
+        return userService.getUser(email);
+    }
+
 
 }
